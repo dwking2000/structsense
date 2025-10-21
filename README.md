@@ -351,6 +351,14 @@ The docker directory contains the individual and also merged docker compose file
 
 - `pip install --use-deprecated=legacy-resolver structsense`
 
+<details>
+<summary><strong>❗ Python version</summary>
+
+**Symptom**
+
+- ERROR: Could not find a version that satisfies the requirement structsense (from versions: none) ERROR: No matching distribution found for structsense
+
+- Your Python version should be `>=3.10,<3.13`.
 
 ### License
 [Apache License Version 2.0](LICENSE.txt)
