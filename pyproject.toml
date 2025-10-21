@@ -6,7 +6,7 @@ readme = "README.md"
 license = { text = "Apache-2.0" }
 authors = [{ name = "tekrajchhetri", email = "tekraj@mit.edu" }]
 maintainers = [{ name = "tekrajchhetri", email = "tekraj@mit.edu" }]
-requires-python = ">=3.10,<3.15"
+requires-python = ">=3.10,<3.13"
 keywords = ["python", "package", "template"]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -34,7 +34,7 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.15"
+python = ">=3.10,<3.13"
 click = "^8.1.7"
 grobidarticleextractor = "^0.7.0"
 pyyaml = "^6.0.2"
