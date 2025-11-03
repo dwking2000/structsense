@@ -993,17 +993,17 @@ class StructSenseFlow(Flow):
             return None
 
         logger.info("Starting human feedback processing")
-        
+
         # Detect task type
         task_type = self._detect_task_type()
         logger.info(f"Detected task type for human feedback: {task_type}")
 
+        # Extract the actual judged data from the wrapper (moved outside the if block)
+        actual_judged_data = self._extract_data_from_result(judge_result, task_type, "judgment")
+        logger.info(f"Extracted judged data for feedback: {type(actual_judged_data)}")
+
         # First, request feedback on the judge's results
         if self.enable_human_feedback:
-            # Extract the actual judged data from the wrapper
-            actual_judged_data = self._extract_data_from_result(judge_result, task_type, "judgment")
-            logger.info(f"Extracted judged data for feedback: {type(actual_judged_data)}")
-            
             feedback_dict = self.human.request_feedback(
                 data=actual_judged_data,
                 step_name="human_feedback_processing",
@@ -1027,7 +1027,7 @@ class StructSenseFlow(Flow):
         # The human feedback handler returns the original data for option 1 (Approve)
         # and modified data for option 3 (Modify)
         user_modified_data = has_modifications(feedback_dict, actual_judged_data)
-        
+
         # Only run the human feedback agent if the user actually modified the data
         if user_modified_data:
             logger.info("User modified data, running human feedback agent")
@@ -1083,13 +1083,13 @@ class StructSenseFlow(Flow):
 
             if modified_result:
                 feedback_dict = modified_result.to_dict()
-                
+
                 # Extract the actual feedback data from the wrapper
                 actual_feedback_data = self._extract_data_from_result(feedback_dict, task_type, "human_feedback")
-                
+
                 # Wrap data according to task type
                 wrapped_result = self._wrap_data_for_next_step(actual_feedback_data, task_type, "human_feedback")
-                
+
                 self._update_shared_state("feedback_terms", wrapped_result)
             else:
                 logger.warning("Modification processing returned no results")
