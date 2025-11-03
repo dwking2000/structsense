@@ -258,7 +258,7 @@ Running via CLI without an API key (not required for local models):
 ```shell
 structsense-cli extract \
 --source SOME.pdf \
---config config.yaml \
+--config ner_config_gpt.yaml \
 --env_file .env
 ```
 
@@ -339,6 +339,26 @@ By default chunking is false you can enable it by passing `--chunking True`.
 
 ## Docker
 The docker directory contains the individual and also merged docker compose file which installs Grobid, Ollama and Vector database.
+
+## Known issues
+
+<details>
+<summary><strong>❗ pip “resolution-too-deep” when installing <code>structsense</code></strong></summary>
+
+**Symptom**
+
+- During `pip install structsense` (or when it’s a transitive dep), pip backtracks for a long time across many `opentelemetry-*` packages and eventually fails with:
+
+- `pip install --use-deprecated=legacy-resolver structsense`
+
+<details>
+<summary><strong>❗ Python version</summary>
+
+**Symptom**
+
+- ERROR: Could not find a version that satisfies the requirement structsense (from versions: none) ERROR: No matching distribution found for structsense
+
+- Your Python version should be `>=3.10,<3.13`.
 
 ### License
 [Apache License Version 2.0](LICENSE.txt)
