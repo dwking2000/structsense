@@ -6,7 +6,7 @@ Welcome to `structsense`!
 
 Whether you're working with scientific texts, documents, or messy data, `structsense` enables you to transform it into meaningful, structured insights.
 
-### Documention
+### Documentation
 The complete documentation for StructSense can be found here: [docs.brainkb.org](http://docs.brainkb.org/structsense_overview.html)
 
 ### License
